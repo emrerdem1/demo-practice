@@ -1,4 +1,9 @@
-import { API_KEY, MOVIE_DB_BASE_URL } from './MovieDB.constants';
+import {
+  API_KEY,
+  MovieDBFeatures,
+  MOVIE_DB_BASE_URL,
+} from './MovieDB.constants';
+import { IMovieDetailProps, IMovieListResponseSpec } from './MovieDB.types';
 
 interface IApiCallProps {
   requestEndpoint: string;
@@ -7,22 +12,34 @@ interface IApiProps {
   endpoint: string;
 }
 
-export const generateApiURL = ({ endpoint }: IApiProps): string => {
+const _generateApiURL = ({ endpoint }: IApiProps): string => {
   return `${MOVIE_DB_BASE_URL}${endpoint}?api_key=${API_KEY}`;
 };
 
-export const movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
+const _getMovieDetailApiURL = (id: number, detailPath: string): string => {
+  const parsedEndpoint = detailPath.replace('{movie_id}', id.toString());
+  return _generateApiURL({ endpoint: parsedEndpoint });
+};
+
+const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   const movieResponse = await fetch(requestEndpoint);
   const movieResult = await movieResponse.json();
   return movieResult;
 };
 
-export const getMovieList = async (endpoint: string) =>
-  await movieDBApiCall({
-    requestEndpoint: generateApiURL({ endpoint }),
+export const getMovieList = (
+  endpoint: string
+): Promise<IMovieListResponseSpec> =>
+  _movieDBApiCall({
+    requestEndpoint: _generateApiURL({ endpoint }),
   });
 
-export const getMovieDetailApiURL = (id: number, detailPath: string) => {
-  const parsedEndpoint = detailPath.replace('{movie_id}', id.toString());
-  return generateApiURL({ endpoint: parsedEndpoint });
+export const getSpecificMovieDetail = (
+  id: number
+): Promise<IMovieDetailProps> => {
+  const movieDetailEndpoint = _getMovieDetailApiURL(
+    id,
+    MovieDBFeatures.DETAILS
+  );
+  return _movieDBApiCall({ requestEndpoint: movieDetailEndpoint });
 };

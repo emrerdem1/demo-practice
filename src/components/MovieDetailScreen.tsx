@@ -1,32 +1,31 @@
 import React from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { MovieDBFeatures } from '../common/MovieDB.constants';
-import { getMovieDetailApiURL, movieDBApiCall } from '../common/MovieDB.utils';
+import { IMovieDetailProps } from '../common/MovieDB.types';
+import { getSpecificMovieDetail } from '../common/MovieDB.utils';
 
 const MovieDetailScreen: React.FC = () => {
+  const [movieDetails, setMovieDetails] = useState<IMovieDetailProps | null>(
+    null
+  );
   const { movieId } = useParams();
 
   if (!movieId) {
     return <div>No ID passed to fetch.</div>;
   }
 
-  const loadSpecificMovie = (id: number) => {
-    const movieDetailEndpoint = getMovieDetailApiURL(
-      id,
-      MovieDBFeatures.DETAILS
-    );
-    movieDBApiCall({ requestEndpoint: movieDetailEndpoint }).then((response) =>
-      console.log(response)
-    );
-  };
-
   useEffect(() => {
-    loadSpecificMovie(parseInt(movieId));
+    getSpecificMovieDetail(parseInt(movieId)).then((response) => {
+      setMovieDetails(response);
+    });
   }, [movieId]);
 
-  console.log(movieId);
-  return <div>ab</div>;
+  if (!movieDetails) {
+    return <div>Could not find corresponding movie.</div>;
+  }
+
+  return <div>{movieDetails.title}</div>;
 };
 
 export default MovieDetailScreen;
