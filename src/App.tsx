@@ -5,7 +5,8 @@ import RoutesView from './containers/RoutesView';
 const LayoutDiv = styled.div`
   width: 100%;
   height: 100%;
-  margin: 1em;
+  padding: 2em;
+  margin: 0 auto;
   max-width: 1440px;
 `;
 

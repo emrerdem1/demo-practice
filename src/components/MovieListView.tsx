@@ -18,7 +18,7 @@ const MovieListView: React.FC = () => {
   }, []);
 
   return (
-    <Row gutter={[20, 24]}>
+    <Row gutter={[20, 24]} justify="center">
       {movieList.map((movie: TMovieListItemProps, idx: number) => (
         <Col
           key={movie.backdrop_path + idx}
