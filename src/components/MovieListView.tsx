@@ -1,3 +1,4 @@
+import { Col, Row } from 'antd';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -12,15 +13,25 @@ const MovieListView: React.FC = () => {
   useEffect(() => {
     getMovieList(MovieDBFeatures.POPULAR).then((response) => {
       setMovieList(response.results);
+      console.log(response.results);
     });
   }, []);
 
   return (
-    <div>
+    <Row gutter={[20, 24]}>
       {movieList.map((movie: TMovieListItemProps, idx: number) => (
-        <MoviePosterView movie={movie} key={movie.backdrop_path + idx} />
+        <Col
+          key={movie.backdrop_path + idx}
+          xs={12}
+          sm={8}
+          md={6}
+          lg={5}
+          xl={4}
+        >
+          <MoviePosterView movie={movie} />
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 

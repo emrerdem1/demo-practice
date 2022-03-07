@@ -25,6 +25,7 @@ const MovieDetailScreen: React.FC = () => {
     return <div>Could not find corresponding movie.</div>;
   }
 
+  console.log(movieDetails);
   return <div>{movieDetails.title}</div>;
 };
 

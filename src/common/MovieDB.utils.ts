@@ -1,7 +1,8 @@
 import {
   API_KEY,
   MovieDBFeatures,
-  MOVIE_DB_BASE_URL,
+  MOVIE_DB_API_BASE_URL,
+  MOVIE_DB_IMAGE_BASE_URL,
 } from './MovieDB.constants';
 import { IMovieDetailProps, IMovieListResponseSpec } from './MovieDB.types';
 
@@ -12,8 +13,13 @@ interface IApiProps {
   endpoint: string;
 }
 
+interface IMovieImagePathProps {
+  size: string;
+  path: string;
+}
+
 const _generateApiURL = ({ endpoint }: IApiProps): string => {
-  return `${MOVIE_DB_BASE_URL}${endpoint}?api_key=${API_KEY}`;
+  return `${MOVIE_DB_API_BASE_URL}${endpoint}?api_key=${API_KEY}`;
 };
 
 const _getMovieDetailApiURL = (id: number, detailPath: string): string => {
@@ -26,6 +32,11 @@ const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   const movieResult = await movieResponse.json();
   return movieResult;
 };
+
+export const getMovieImagePath = ({
+  size,
+  path,
+}: IMovieImagePathProps): string => MOVIE_DB_IMAGE_BASE_URL + size + path;
 
 export const getMovieList = (
   endpoint: string
