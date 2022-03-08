@@ -5,7 +5,11 @@ import {
   MOVIE_DB_API_BASE_URL,
   MOVIE_DB_IMAGE_BASE_URL,
 } from './MovieDB.constants';
-import { IMovieDetailProps, IMovieListResponseSpec } from './MovieDB.types';
+import {
+  ICastSpec,
+  IMovieDetailProps,
+  IMovieListResponseSpec,
+} from './MovieDB.types';
 
 interface IApiCallProps {
   requestEndpoint: string;
@@ -78,9 +82,7 @@ export const getSpecificMovieDetail = (
   return _movieDBApiCall({ requestEndpoint: movieDetailEndpoint });
 };
 
-export const getSpecificMovieCast = (
-  id: number
-): Promise<IMovieDetailProps> => {
+export const getSpecificMovieCast = (id: number): Promise<ICastSpec> => {
   const movieCastEndpoint = _getMovieCastApiURL(id);
   return _movieDBApiCall({ requestEndpoint: movieCastEndpoint });
 };

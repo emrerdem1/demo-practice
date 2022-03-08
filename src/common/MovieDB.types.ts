@@ -32,9 +32,26 @@ interface ISpokenLanguages {
   name: string;
 }
 
+export interface IFetchSpec {
+  isLoading: boolean | null;
+  isSuccess: boolean | null;
+  isFailure: boolean | null;
+}
+
 export interface IGenres {
   id: number;
   name: string;
+}
+
+export interface ICastInfo {
+  id: number;
+  character: string;
+  name: string;
+  profile_path: string;
+}
+
+export interface ICastSpec {
+  cast: ICastInfo[];
 }
 
 export type TMovieListItemProps = { genre_ids: number[] } & IMovie;
