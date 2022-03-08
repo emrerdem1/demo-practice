@@ -5,6 +5,7 @@ import { ICastInfo } from '../common/MovieDB.types';
 import { getCastAvatar, getSpecificMovieCast } from '../common/MovieDB.utils';
 import DataNotFoundView from './DataNotFoundView';
 import LoaderView from './LoaderView';
+import styled from '@emotion/styled';
 
 interface IMovieCastListProps {
   movieId: string;
@@ -13,6 +14,15 @@ interface IMovieCastListProps {
 interface IMovieCastFetchSpec extends IFetchSpec {
   data: ICastInfo[] | null;
 }
+
+const CastListContainer = styled.div`
+  margin-top: 1em;
+
+  .ant-spin-container,
+  .cast-header {
+    padding: 0 2em;
+  }
+`;
 
 const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
   const [{ data: movieCast, isLoading, isFailure }, setMovieCast] =
@@ -55,8 +65,8 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
   }
 
   return (
-    <div>
-      <h5>Full Cast ({movieCast.length})</h5>
+    <CastListContainer>
+      <h5 className="cast-header">Full Cast ({movieCast.length})</h5>
       <List
         itemLayout="horizontal"
         dataSource={movieCast}
@@ -64,6 +74,7 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
           showSizeChanger: false,
           position: 'bottom',
           pageSize: 5,
+          responsive: true,
         }}
         renderItem={(member) => (
           <List.Item>
@@ -75,7 +86,7 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
           </List.Item>
         )}
       />
-    </div>
+    </CastListContainer>
   );
 };
 

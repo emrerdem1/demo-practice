@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
-import { PageHeader, Typography } from 'antd';
+import { PageHeader } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { ScreenRoutes } from '../common/MovieDB.constants';
 
@@ -11,6 +11,20 @@ const MainTitleDiv = styled.div`
 
   .ant-page-header-heading-sub-title {
     font-size: 1.4em;
+  }
+
+  .tagline {
+    margin-bottom: 1em;
+  }
+`;
+
+const TaglineDiv = styled.div`
+  .ant-page-header {
+    padding-top: 0;
+  }
+
+  .ant-page-header-heading-sub-title {
+    font-size: 1.2em;
   }
 `;
 
@@ -36,7 +50,9 @@ const MovieDetailTitleView: React.FC<IMovieDetailTitleProps> = ({
           subTitle={`(${moment(release_date).format('YYYY')})`}
         />
       </MainTitleDiv>
-      <Typography.Text type="secondary">{tagline}</Typography.Text>
+      <TaglineDiv>
+        <PageHeader title={''} subTitle={tagline} />
+      </TaglineDiv>
     </div>
   );
 };

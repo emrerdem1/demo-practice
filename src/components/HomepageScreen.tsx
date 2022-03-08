@@ -15,6 +15,7 @@ const HeaderDiv = styled.div`
   @media (max-width: ${Breakpoints.MOBILE}px) {
     h2 {
       font-size: 1.2em;
+      margin-bottom: 1em;
     }
   }
 `;
