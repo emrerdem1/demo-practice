@@ -59,6 +59,11 @@ const _getMovieCastApiURL = (id: number): string => {
 
 const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   const movieResponse = await fetch(requestEndpoint);
+  if (!movieResponse.ok) {
+    throw new Error(
+      `Fetch failed, please make sure you have a valid API_KEY. Status: ${movieResponse.status}. Message: ${movieResponse.statusText}.`
+    );
+  }
   const movieResult = await movieResponse.json();
   return movieResult;
 };

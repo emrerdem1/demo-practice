@@ -1,15 +1,7 @@
-import { IFetchSpec } from './MovieDB.types';
-
 export const API_KEY = '6716e688acf4f705126a35a2e51dacbc';
 export const MOVIE_DB_API_BASE_URL = 'https://api.themoviedb.org/3/';
 export const MOVIE_DB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
 export const IMDB_MOVIE_DETAIL_BASE_URL = 'https://www.imdb.com/title/';
-
-export const INITIAL_FETCH_STATE: IFetchSpec = {
-  isLoading: false,
-  isSuccess: null,
-  isFailure: null,
-};
 
 export enum MovieDBEndpointPatterns {
   MOVIE_BASE = 'movie',

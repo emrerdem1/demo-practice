@@ -32,12 +32,6 @@ interface ISpokenLanguages {
   name: string;
 }
 
-export interface IFetchSpec {
-  isLoading: boolean | null;
-  isSuccess: boolean | null;
-  isFailure: boolean | null;
-}
-
 export interface IGenres {
   id: number;
   name: string;

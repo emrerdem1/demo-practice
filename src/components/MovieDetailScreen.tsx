@@ -3,23 +3,26 @@ import { Col, Row } from 'antd';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { IFetchSpec, IMovieDetailProps } from '../common/MovieDB.types';
+import { IMovieDetailProps } from '../common/MovieDB.types';
 import { getSpecificMovieDetail } from '../common/MovieDB.utils';
 import MovieDetailTitleView from './MovieDetailTitleView';
 import MovieStandalonePosterView from './MovieStandalonePosterView';
 import MovieCastListView from './MovieCastListView';
 import MovieGeneralInfoView from './MovieGeneralInfoView';
-import { INITIAL_FETCH_STATE } from '../common/MovieDB.constants';
+import { FetchKeys, FETCH_STATES, IFetchSpec } from '../common/MovieDB.fetch';
+import LoaderView from './LoaderView';
+import DataNotFoundView from './DataNotFoundView';
 
 interface IMovieDetailFetchSpec extends IFetchSpec {
   data: IMovieDetailProps | null;
 }
 
 const MovieDetailScreen: React.FC = () => {
-  const [movieDetail, setMovieDetail] = useState<IMovieDetailFetchSpec>({
-    data: null,
-    ...INITIAL_FETCH_STATE,
-  });
+  const [{ data: movieDetail, isLoading, isFailure }, setMovieDetail] =
+    useState<IMovieDetailFetchSpec>({
+      data: null,
+      ...FETCH_STATES[FetchKeys.INITIAL],
+    });
   const { movieId } = useParams();
 
   if (!movieId) {
@@ -27,19 +30,29 @@ const MovieDetailScreen: React.FC = () => {
   }
 
   useEffect(() => {
-    getSpecificMovieDetail(parseInt(movieId)).then((response) => {
-      setMovieDetail((prevState) => ({
-        ...prevState,
-        data: response,
-        isSuccess: true,
-        isLoading: false,
-        isFailure: false,
-      }));
-    });
+    getSpecificMovieDetail(parseInt(movieId))
+      .then((response) => {
+        setMovieDetail((prevState) => ({
+          ...prevState,
+          data: response,
+          ...FETCH_STATES[FetchKeys.SUCCESS],
+        }));
+      })
+      .catch((error) => {
+        console.warn(error);
+        setMovieDetail((prevState) => ({
+          ...prevState,
+          ...FETCH_STATES[FetchKeys.FAILURE],
+        }));
+      });
   }, [movieId]);
 
-  if (!movieDetail.isSuccess || !movieDetail.data) {
-    return <div>Could not find corresponding movie.</div>;
+  if (isLoading) {
+    return <LoaderView />;
+  }
+
+  if (isFailure || !movieDetail) {
+    return <DataNotFoundView keyText={'movie detail'} hasHomeNavigation />;
   }
 
   const {
@@ -51,7 +64,7 @@ const MovieDetailScreen: React.FC = () => {
     imdb_id,
     runtime,
     release_date,
-  } = movieDetail.data;
+  } = movieDetail;
 
   return (
     <div>
