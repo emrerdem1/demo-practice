@@ -48,6 +48,18 @@ export interface ICastSpec {
   cast: ICastInfo[];
 }
 
+export interface IReviewInfo {
+  id: number;
+  author: string;
+  content: string;
+  created_at: string;
+}
+
+export interface IReviewSpec {
+  id: number;
+  results: IReviewInfo[];
+}
+
 export type TMovieListItemProps = { genre_ids: number[] } & IMovie;
 
 export interface IMovieDetailProps extends IMovie {

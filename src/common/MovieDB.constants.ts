@@ -15,6 +15,7 @@ export const MovieDBEndpointPaths = {
   POPULAR_MOVIES: `${MovieDBEndpointPatterns.MOVIE_BASE}/popular`,
   MOVIE_DETAIL: `${MovieDBEndpointPatterns.MOVIE_BASE}/${MovieDBEndpointPatterns.MOVIE_ID}`,
   MOVIE_CAST: `${MovieDBEndpointPatterns.MOVIE_BASE}/${MovieDBEndpointPatterns.MOVIE_ID}/credits`,
+  MOVIE_REVIEWS: `${MovieDBEndpointPatterns.MOVIE_BASE}/${MovieDBEndpointPatterns.MOVIE_ID}/reviews`,
 };
 
 export enum PosterSizes {

@@ -12,6 +12,7 @@ import {
   ICastSpec,
   IMovieDetailProps,
   IMovieListResponseSpec,
+  IReviewSpec,
 } from './MovieDB.types';
 
 interface IApiCallProps {
@@ -60,6 +61,15 @@ const _getMovieCastApiURL = (id: number): string => {
   return _generateApiURL({ endpoint: parsedEndpoint });
 };
 
+const _getMovieReviewApiURL = (id: number): string => {
+  const parsedEndpoint = _replaceApiPathWithID({
+    id,
+    apiPath: MovieDBEndpointPaths.MOVIE_REVIEWS,
+    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
+  });
+  return _generateApiURL({ endpoint: parsedEndpoint });
+};
+
 const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   const movieResponse = await fetch(requestEndpoint);
   if (!movieResponse.ok) {
@@ -91,6 +101,11 @@ export const getSpecificMovieDetail = (
 export const getSpecificMovieCast = (id: number): Promise<ICastSpec> => {
   const movieCastEndpoint = _getMovieCastApiURL(id);
   return _movieDBApiCall({ requestEndpoint: movieCastEndpoint });
+};
+
+export const getSpecificMovieReviews = (id: number): Promise<IReviewSpec> => {
+  const movieReviewEndpoint = _getMovieReviewApiURL(id);
+  return _movieDBApiCall({ requestEndpoint: movieReviewEndpoint });
 };
 
 export const getMoviePoster = (profile_path: string) => {

@@ -12,6 +12,7 @@ import MovieGeneralInfoView from './MovieGeneralInfoView';
 import { FetchKeys, FETCH_STATES, IFetchSpec } from '../common/MovieDB.fetch';
 import LoaderView from './LoaderView';
 import DataNotFoundView from './DataNotFoundView';
+import MovieReviewsView from './MovieReviewsView';
 
 interface IMovieDetailFetchSpec extends IFetchSpec {
   data: IMovieDetailProps | null;
@@ -91,6 +92,7 @@ const MovieDetailScreen: React.FC = () => {
             runtime={runtime}
             release_date={release_date}
           />
+          <MovieReviewsView movieId={movieId} />
         </Col>
       </Row>
     </div>

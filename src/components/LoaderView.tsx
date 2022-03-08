@@ -5,7 +5,10 @@ import styled from '@emotion/styled';
 const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2em;
+  align-items: flex-start;
+  margin-top: 3em;
+  height: 100vh;
+  width: 100vw;
 `;
 
 const LoaderView: React.FC = () => {
