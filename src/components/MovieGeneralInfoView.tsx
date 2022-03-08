@@ -1,12 +1,18 @@
 import React from 'react';
 import { IGenres } from '../common/MovieDB.types';
-import { Col, Row, Typography, Anchor } from 'antd';
+import { Col, Row, Typography, Anchor, Tag } from 'antd';
 import moment from 'moment';
+import 'moment-duration-format';
 import styled from '@emotion/styled';
 import { IMDB_MOVIE_DETAIL_BASE_URL } from '../common/MovieDB.constants';
 
 const VRow = styled(Row)`
   flex-direction: column;
+  margin-bottom: 1em;
+
+  .ant-typography-secondary {
+    margin-bottom: 0.2em;
+  }
 `;
 
 interface IGeneralInfoProps {
@@ -32,16 +38,22 @@ const MovieGeneralInfoView: React.FC<IGeneralInfoProps> = ({
       </VRow>
       <VRow>
         <Typography.Text type="secondary">Genre</Typography.Text>
-        {genres.map((genre) => (
-          <Col key={genre.id}>
-            <Typography.Text>{genre.name}</Typography.Text>
-          </Col>
-        ))}
+        <Row>
+          {genres.map((genre) => (
+            <Col key={genre.id} style={{ paddingBottom: '0.35em' }}>
+              <Tag>{genre.name}</Tag>
+            </Col>
+          ))}
+        </Row>
       </VRow>
-      <Row>
+      <Row justify="space-between" align="middle" style={{ maxWidth: 250 }}>
         <Col>
-          <Typography.Text type="secondary">Runtime</Typography.Text>
-          <Typography.Text>{runtime}</Typography.Text>
+          <VRow>
+            <Typography.Text type="secondary">Runtime</Typography.Text>
+            <Typography.Text>
+              {moment.duration(runtime, 'minutes').format('h[h] m[m]')}
+            </Typography.Text>
+          </VRow>
         </Col>
         <Col>
           <Anchor affix={false}>
