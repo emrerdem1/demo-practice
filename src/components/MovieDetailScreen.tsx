@@ -1,11 +1,13 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { Col, Row } from 'antd';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMovieDetailProps } from '../common/MovieDB.types';
-import { getSpecificMovieDetail } from '../common/MovieDB.utils';
+import {
+  getSpecificMovieCast,
+  getSpecificMovieDetail,
+} from '../common/MovieDB.utils';
 import MovieDetailTitleView from './MovieDetailTitleView';
 import MovieStandalonePosterView from './MovieStandalonePosterView';
 import MovieCastListView from './MovieCastListView';
@@ -26,6 +28,12 @@ const MovieDetailScreen: React.FC = () => {
       setMovieDetails(response);
     });
   }, [movieId]);
+
+  useEffect(() => {
+    getSpecificMovieCast(parseInt(movieId)).then((response) => {
+      console.log(response);
+    });
+  }, [movieDetails]);
 
   if (!movieDetails) {
     return <div>Could not find corresponding movie.</div>;
