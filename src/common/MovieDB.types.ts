@@ -14,11 +14,6 @@ interface IMovie {
   vote_count: number;
 }
 
-interface IGenres {
-  id: number;
-  name: string;
-}
-
 interface IProdCompanies {
   id: number;
   logo_path: null | string;
@@ -34,6 +29,11 @@ interface IProdCountries {
 interface ISpokenLanguages {
   english_name: string;
   iso_639_1: string;
+  name: string;
+}
+
+export interface IGenres {
+  id: number;
   name: string;
 }
 
