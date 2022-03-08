@@ -60,6 +60,11 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
       <List
         itemLayout="horizontal"
         dataSource={movieCast}
+        pagination={{
+          showSizeChanger: false,
+          position: 'bottom',
+          pageSize: 5,
+        }}
         renderItem={(member) => (
           <List.Item>
             <List.Item.Meta
