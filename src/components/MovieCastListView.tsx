@@ -34,8 +34,6 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
   useEffect(() => {
     getSpecificMovieCast(parseInt(movieId))
       .then((response) => {
-        console.log(response.cast);
-
         setMovieCast((prevState) => ({
           ...prevState,
           data: response.cast,
