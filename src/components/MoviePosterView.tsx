@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PosterSizes } from '../common/MovieDB.constants';
 import { TMovieListItemProps } from '../common/MovieDB.types';
-import { getMovieImagePath } from '../common/MovieDB.utils';
+import { getMoviePoster } from '../common/MovieDB.utils';
 import styled from '@emotion/styled';
 import moment from 'moment';
 
@@ -69,13 +68,7 @@ const MoviePosterView: React.FC<IMoviePosterProps> = ({ movie }) => {
     <Link to={`/detail/${movie.id}`}>
       <VFlex>
         <ImageContainer>
-          <img
-            src={getMovieImagePath({
-              size: PosterSizes.SM,
-              path: movie.poster_path,
-            })}
-            alt="movie poster"
-          />
+          <img src={getMoviePoster(movie.poster_path)} alt="movie poster" />
           <RatingBadge>{movie.vote_average}</RatingBadge>
         </ImageContainer>
         <TextContainer>

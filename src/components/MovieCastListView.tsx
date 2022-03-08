@@ -1,7 +1,8 @@
+import { Avatar, List } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { FetchKeys, FETCH_STATES, IFetchSpec } from '../common/MovieDB.fetch';
 import { ICastInfo } from '../common/MovieDB.types';
-import { getSpecificMovieCast } from '../common/MovieDB.utils';
+import { getCastAvatar, getSpecificMovieCast } from '../common/MovieDB.utils';
 import DataNotFoundView from './DataNotFoundView';
 import LoaderView from './LoaderView';
 
@@ -23,6 +24,8 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
   useEffect(() => {
     getSpecificMovieCast(parseInt(movieId))
       .then((response) => {
+        console.log(response.cast);
+
         setMovieCast((prevState) => ({
           ...prevState,
           data: response.cast,
@@ -42,11 +45,33 @@ const MovieCastListView: React.FC<IMovieCastListProps> = ({ movieId }) => {
     return <LoaderView />;
   }
 
+  // TODO: Consider having "Retry" fetch button in this section.
   if (isFailure || !movieCast) {
     return <DataNotFoundView keyText={'movie cast'} />;
   }
 
-  return <div>{movieId}</div>;
+  if (!movieCast.length) {
+    return <h6>No cast info exist for the movie.</h6>;
+  }
+
+  return (
+    <div>
+      <h5>Full Cast ({movieCast.length})</h5>
+      <List
+        itemLayout="horizontal"
+        dataSource={movieCast}
+        renderItem={(member) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={getCastAvatar(member.profile_path)} />}
+              title={<a href="https://ant.design">{member.name}</a>}
+              description={member.character}
+            />
+          </List.Item>
+        )}
+      />
+    </div>
+  );
 };
 
 export default MovieCastListView;

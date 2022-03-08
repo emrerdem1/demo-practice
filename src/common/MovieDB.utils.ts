@@ -3,7 +3,10 @@ import {
   MovieDBEndpointPaths,
   MovieDBEndpointPatterns,
   MOVIE_DB_API_BASE_URL,
+  MOVIE_DB_FALLBACK_AVATAR,
+  MOVIE_DB_FALLBACK_POSTER,
   MOVIE_DB_IMAGE_BASE_URL,
+  PosterSizes,
 } from './MovieDB.constants';
 import {
   ICastSpec,
@@ -68,10 +71,8 @@ const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   return movieResult;
 };
 
-export const getMovieImagePath = ({
-  size,
-  path,
-}: IMovieImagePathProps): string => MOVIE_DB_IMAGE_BASE_URL + size + path;
+const _getMovieImagePath = ({ size, path }: IMovieImagePathProps): string =>
+  MOVIE_DB_IMAGE_BASE_URL + size + path;
 
 export const getMovieList = (
   endpoint: string
@@ -90,4 +91,22 @@ export const getSpecificMovieDetail = (
 export const getSpecificMovieCast = (id: number): Promise<ICastSpec> => {
   const movieCastEndpoint = _getMovieCastApiURL(id);
   return _movieDBApiCall({ requestEndpoint: movieCastEndpoint });
+};
+
+export const getMoviePoster = (profile_path: string) => {
+  if (!profile_path) return MOVIE_DB_FALLBACK_POSTER;
+
+  return _getMovieImagePath({
+    size: PosterSizes.SM,
+    path: profile_path,
+  });
+};
+
+export const getCastAvatar = (profile_path: string) => {
+  if (!profile_path) return MOVIE_DB_FALLBACK_AVATAR;
+
+  return _getMovieImagePath({
+    size: PosterSizes.SM,
+    path: profile_path,
+  });
 };

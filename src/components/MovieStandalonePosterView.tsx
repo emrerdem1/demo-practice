@@ -1,7 +1,6 @@
 import React from 'react';
-import { PosterSizes } from '../common/MovieDB.constants';
-import { getMovieImagePath } from '../common/MovieDB.utils';
 import styled from '@emotion/styled';
+import { getMoviePoster } from '../common/MovieDB.utils';
 
 const PosterDiv = styled.div`
   display: flex;
@@ -22,13 +21,7 @@ const MovieStandalonePosterView: React.FC<IStandalonePosterProps> = ({
 }) => {
   return (
     <PosterDiv>
-      <img
-        src={getMovieImagePath({
-          size: PosterSizes.MD,
-          path: source,
-        })}
-        alt="movie poster"
-      />
+      <img src={getMoviePoster(source)} alt="movie poster" />
     </PosterDiv>
   );
 };
