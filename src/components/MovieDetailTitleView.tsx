@@ -2,6 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 import { PageHeader, Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { ScreenRoutes } from '../common/MovieDB.constants';
 
 const MainTitleDiv = styled.div`
   display: flex;
@@ -23,11 +25,13 @@ const MovieDetailTitleView: React.FC<IMovieDetailTitleProps> = ({
   release_date,
   tagline,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <MainTitleDiv>
         <PageHeader
-          onBack={() => null}
+          onBack={() => navigate(ScreenRoutes.HOME)}
           title={title}
           subTitle={`(${moment(release_date).format('YYYY')})`}
         />

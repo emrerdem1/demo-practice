@@ -64,6 +64,7 @@ const MovieDetailScreen: React.FC = () => {
     imdb_id,
     runtime,
     release_date,
+    vote_average,
   } = movieDetail;
 
   return (
@@ -75,7 +76,11 @@ const MovieDetailScreen: React.FC = () => {
       />
       <Row justify="space-around">
         <Col xs={24} md={10} xl={8}>
-          <MovieStandalonePosterView source={poster_path} />
+          <MovieStandalonePosterView
+            source={poster_path}
+            vote_average={vote_average}
+            isDetailPagePoster
+          />
           <MovieCastListView movieId={movieId} />
         </Col>
         <Col xs={24} md={14} xl={16}>
