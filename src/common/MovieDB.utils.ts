@@ -1,6 +1,7 @@
 import {
   API_KEY,
   MovieDBEndpointPaths,
+  MovieDBEndpointPatterns,
   MOVIE_DB_API_BASE_URL,
   MOVIE_DB_IMAGE_BASE_URL,
 } from './MovieDB.constants';
@@ -18,28 +19,38 @@ interface IMovieImagePathProps {
   path: string;
 }
 
-const _replaceMovieDetailPathWithID = (id: number, detailPath: string) =>
-  detailPath.replace(MovieDBEndpointPaths.DETAIL, id.toString());
+interface IReplaceApiPathProps {
+  id: number;
+  apiPath: string;
+  matchPattern: string;
+}
+
+const _replaceApiPathWithID = ({
+  id,
+  apiPath,
+  matchPattern,
+}: IReplaceApiPathProps) => apiPath.replace(matchPattern, id.toString());
 
 const _generateApiURL = ({ endpoint }: IApiProps): string => {
-  return `${MOVIE_DB_API_BASE_URL}${MovieDBEndpointPaths.MOVIE_BASE}${endpoint}?api_key=${API_KEY}`;
+  return `${MOVIE_DB_API_BASE_URL}${endpoint}?api_key=${API_KEY}`;
 };
 
 const _getMovieDetailApiURL = (id: number): string => {
-  const detailPathWithID = _replaceMovieDetailPathWithID(
+  const parsedEndpoint = _replaceApiPathWithID({
     id,
-    MovieDBEndpointPaths.DETAIL
-  );
-  return _generateApiURL({ endpoint: detailPathWithID });
-};
-const _getMovieCastApiURL = (id: number): string => {
-  const detailPathWithID = _replaceMovieDetailPathWithID(
-    id,
-    MovieDBEndpointPaths.DETAIL
-  );
-  return _generateApiURL({
-    endpoint: `${detailPathWithID}/${MovieDBEndpointPaths.CAST}`,
+    apiPath: MovieDBEndpointPaths.MOVIE_DETAIL,
+    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
   });
+  return _generateApiURL({ endpoint: parsedEndpoint });
+};
+
+const _getMovieCastApiURL = (id: number): string => {
+  const parsedEndpoint = _replaceApiPathWithID({
+    id,
+    apiPath: MovieDBEndpointPaths.MOVIE_CAST,
+    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
+  });
+  return _generateApiURL({ endpoint: parsedEndpoint });
 };
 
 const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
@@ -53,11 +64,11 @@ export const getMovieImagePath = ({
   path,
 }: IMovieImagePathProps): string => MOVIE_DB_IMAGE_BASE_URL + size + path;
 
-export const getMovieList = (): Promise<IMovieListResponseSpec> =>
+export const getMovieList = (
+  endpoint: string
+): Promise<IMovieListResponseSpec> =>
   _movieDBApiCall({
-    requestEndpoint: _generateApiURL({
-      endpoint: MovieDBEndpointPaths.POPULAR,
-    }),
+    requestEndpoint: _generateApiURL({ endpoint }),
   });
 
 export const getSpecificMovieDetail = (
@@ -71,7 +82,5 @@ export const getSpecificMovieCast = (
   id: number
 ): Promise<IMovieDetailProps> => {
   const movieCastEndpoint = _getMovieCastApiURL(id);
-  return _movieDBApiCall({
-    requestEndpoint: movieCastEndpoint,
-  });
+  return _movieDBApiCall({ requestEndpoint: movieCastEndpoint });
 };

@@ -2,6 +2,7 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { MovieDBEndpointPaths } from '../common/MovieDB.constants';
 import { TMovieListItemProps } from '../common/MovieDB.types';
 import { getMovieList } from '../common/MovieDB.utils';
 import MoviePosterView from './MoviePosterView';
@@ -10,7 +11,7 @@ const MovieListView: React.FC = () => {
   const [movieList, setMovieList] = useState<TMovieListItemProps[]>([]);
 
   useEffect(() => {
-    getMovieList().then((response) => {
+    getMovieList(MovieDBEndpointPaths.POPULAR_MOVIES).then((response) => {
       setMovieList(response.results);
       console.log(response.results);
     });
