@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { EndpointPaths } from 'helpers/api/constants';
 import { FetchKeys, FETCH_STATES, IFetchSpec } from 'helpers/general/fetch';
 import { TMovieListItemProps } from 'helpers/api/types';
 import { getMovieList } from 'helpers/api/requests';
@@ -22,7 +21,7 @@ const MovieListScreen: React.FC = () => {
 
   useEffect(() => {
     // TODO: Cache the movie list by page number param with pagination.
-    getMovieList(EndpointPaths.POPULAR_MOVIES)
+    getMovieList()
       .then((response) => {
         setMovieList((prevState) => ({
           ...prevState,

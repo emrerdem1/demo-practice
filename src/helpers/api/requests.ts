@@ -32,11 +32,9 @@ const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
   return movieResult;
 };
 
-export const getMovieList = (
-  endpoint: string
-): Promise<IMovieListResponseSpec> =>
+export const getMovieList = (): Promise<IMovieListResponseSpec> =>
   _movieDBApiCall({
-    requestEndpoint: getMoviesApiURL(endpoint),
+    requestEndpoint: getMoviesApiURL(),
   });
 
 export const getSpecificMovieDetail = (

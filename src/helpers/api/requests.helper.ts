@@ -31,8 +31,8 @@ const _generateApiURL = ({ endpoint }: IApiProps): string => {
   return `${MOVIE_DB_API_BASE_URL}${endpoint}?api_key=${API_KEY}`;
 };
 
-export const getMoviesApiURL = (endpoint: string) => {
-  return _generateApiURL({ endpoint });
+export const getMoviesApiURL = () => {
+  return _generateApiURL({ endpoint: EndpointPaths.POPULAR_MOVIES });
 };
 
 export const getMovieDetailApiURL = (id: number): string => {
