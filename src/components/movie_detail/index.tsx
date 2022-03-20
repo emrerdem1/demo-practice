@@ -1,11 +1,11 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import { IMovieDetailProps } from '../../common/api/MovieDB.types';
-import MovieCastScreen from '../../containers/movie_cast';
+import { IMovieDetailProps } from 'helpers/api/types';
+import MovieCastScreen from 'containers/movie_cast';
 import MovieGeneralInfoView from './MovieGeneralInfoView';
-import MovieReviewsView from '../../containers/movie_reviews';
+import MovieReviewsView from 'containers/movie_reviews';
 import MovieDetailTitleView from './MovieDetailTitleView';
-import MovieStandalonePosterView from '../common/MovieStandalonePosterView';
+import MovieStandalonePosterView from 'components/common/MovieStandalonePosterView';
 
 interface IMovieDetailViewProps {
   movieId: string;

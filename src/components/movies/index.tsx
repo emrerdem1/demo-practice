@@ -1,13 +1,13 @@
 import React from 'react';
 import { Col, Row } from 'antd';
-import { TMovieListItemProps } from '../../common/api/MovieDB.types';
+import { TMovieListItemProps } from 'helpers/api/types';
 import MoviePosterView from './MoviePosterView';
 
-interface IMoviesViewProps {
+interface IMoviesProps {
   movies: TMovieListItemProps[];
 }
 
-const MoviesView: React.FC<IMoviesViewProps> = ({ movies }) => {
+const MoviesView: React.FC<IMoviesProps> = ({ movies }) => {
   return (
     <Row gutter={[20, 24]} justify="center">
       {movies.map((movie, idx) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { PageHeader } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ScreenRoutes } from '../../common/general/constants';
+import { ScreenRoutes } from 'helpers/general/constants';
 import { MainTitleDiv, TaglineDiv } from './MovieDetailTitleView.styled';
 
 interface IMovieDetailTitleProps {

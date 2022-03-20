@@ -1,41 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TMovieListItemProps } from '../../common/api/MovieDB.types';
-import styled from '@emotion/styled';
+import { TMovieListItemProps } from 'helpers/api/types';
 import moment from 'moment';
-import MovieStandalonePosterView from '../common/MovieStandalonePosterView';
-
-const VFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const TextContainer = styled(VFlex)`
-  height: 3em;
-  // Fallback value for browsers that do not support clamp().
-  font-size: 1.2em;
-  font-size: clamp(1.2em, 1.6vw, 1.4em);
-  justify-content: space-between;
-
-  .title {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    line-height: 1.5em;
-    padding-top: 0.1em;
-    font-size: inherit;
-  }
-
-  .release-date {
-    line-height: 1em;
-  }
-`;
+import MovieStandalonePosterView from 'components/common/MovieStandalonePosterView';
+import { TextContainer, VFlex } from './MoviePosterView.styled';
 
 interface IMoviePosterProps {
   movie: TMovieListItemProps;
 }
+
 const MoviePosterView: React.FC<IMoviePosterProps> = ({ movie }) => {
   return (
     <Link to={`/detail/${movie.id}`}>

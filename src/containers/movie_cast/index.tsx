@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FetchKeys,
-  FETCH_STATES,
-  IFetchSpec,
-} from '../../common/general/fetch';
-import { ICastInfo } from '../../common/api/MovieDB.types';
-import { getSpecificMovieCast } from '../../common/api/MovieDB.utils';
-import DataNotFoundView from '../../components/movies/DataNotFoundView';
-import LoaderView from '../../components/movies/LoaderView';
-import MovieCastListView from '../../components/movie_cast';
+import { FetchKeys, FETCH_STATES, IFetchSpec } from 'helpers/general/fetch';
+import { ICastInfo } from 'helpers/api/types';
+import { getSpecificMovieCast } from 'helpers/api/requests';
+import DataNotFoundView from 'components/common/DataNotFoundView';
+import LoaderView from 'components/common/LoaderView';
+import MovieCastListView from 'components/movie_cast';
 
 interface IMovieCastListProps {
   movieId: string;

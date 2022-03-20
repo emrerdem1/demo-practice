@@ -1,17 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { EndpointPaths } from '../../common/api/MovieDB.constants';
-import {
-  FetchKeys,
-  FETCH_STATES,
-  IFetchSpec,
-} from '../../common/general/fetch';
-import { TMovieListItemProps } from '../../common/api/MovieDB.types';
-import { getMovieList } from '../../common/api/MovieDB.utils';
-import DataNotFoundView from '../../components/movies/DataNotFoundView';
-import LoaderView from '../../components/movies/LoaderView';
-import MoviesView from '../../components/movies';
+import { EndpointPaths } from 'helpers/api/constants';
+import { FetchKeys, FETCH_STATES, IFetchSpec } from 'helpers/general/fetch';
+import { TMovieListItemProps } from 'helpers/api/types';
+import { getMovieList } from 'helpers/api/requests';
+import DataNotFoundView from 'components/common/DataNotFoundView';
+import LoaderView from 'components/common/LoaderView';
+import MoviesView from 'components/movies';
 
 interface IMovieListFetchSpec extends IFetchSpec {
   data: TMovieListItemProps[] | null;

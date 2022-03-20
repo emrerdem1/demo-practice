@@ -1,14 +1,14 @@
 import React from 'react';
 import { List, Typography } from 'antd';
-import { IReviewInfo } from '../../common/api/MovieDB.types';
+import { IReviewInfo } from 'helpers/api/types';
 import moment from 'moment';
 import { ScrollableTextDiv } from './index.styled';
 
-interface IMovieReviewsViewProps {
+interface IMovieReviewsProps {
   reviews: IReviewInfo[];
 }
 
-const MovieReviewsView: React.FC<IMovieReviewsViewProps> = ({ reviews }) => {
+const MovieReviewsView: React.FC<IMovieReviewsProps> = ({ reviews }) => {
   return (
     <List
       size="large"

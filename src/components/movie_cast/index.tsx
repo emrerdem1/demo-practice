@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Avatar, List } from 'antd';
-import { ICastInfo } from '../../common/api/MovieDB.types';
-import { getCastAvatar } from '../../common/api/MovieDB.utils';
+import { ICastInfo } from 'helpers/api/types';
+import { getCastAvatar } from 'helpers/api/requests';
 
 const CastListContainer = styled.div`
   margin-top: 1em;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ScreenRoutes } from '../../common/general/constants';
+import { ScreenRoutes } from 'helpers/general/constants';
 
 interface DataNotFoundProps {
   keyText: string;

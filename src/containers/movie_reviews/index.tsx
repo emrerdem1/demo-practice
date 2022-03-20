@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FetchKeys,
-  FETCH_STATES,
-  IFetchSpec,
-} from '../../common/general/fetch';
-import { IReviewInfo } from '../../common/api/MovieDB.types';
-import { getSpecificMovieReviews } from '../../common/api/MovieDB.utils';
-import DataNotFoundView from '../../components/movies/DataNotFoundView';
-import LoaderView from '../../components/movies/LoaderView';
-import MovieReviewsView from '../../components/movie_reviews';
+import { FetchKeys, FETCH_STATES, IFetchSpec } from 'helpers/general/fetch';
+import { IReviewInfo } from 'helpers/api/types';
+import { getSpecificMovieReviews } from 'helpers/api/requests';
+import DataNotFoundView from 'components/common/DataNotFoundView';
+import LoaderView from 'components/common/LoaderView';
+import MovieReviewsView from 'components/movie_reviews';
 
 interface IMovieReviewsScreenProps {
   movieId: string;

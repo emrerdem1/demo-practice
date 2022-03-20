@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { getMoviePoster } from '../../common/api/MovieDB.utils';
+import { getMoviePoster } from 'helpers/api/requests';
 
 const PosterDiv = styled.div`
   display: flex;

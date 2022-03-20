@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Breakpoints } from '../../common/general/constants';
+import { Breakpoints } from 'helpers/general/constants';
 
 export const HeaderDiv = styled.div`
   display: flex;

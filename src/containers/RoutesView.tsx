@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ScreenRoutes } from '../common/general/constants';
-import DataNotFoundView from '../components/movies/DataNotFoundView';
+import { ScreenRoutes } from 'helpers/general/constants';
+import DataNotFoundView from 'components/common/DataNotFoundView';
 import HomepageScreen from './home';
 import MovieDetailScreen from './movie_detail';
 
