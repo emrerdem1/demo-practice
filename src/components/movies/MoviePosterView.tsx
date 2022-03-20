@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TMovieListItemProps } from '../common/MovieDB.types';
+import { TMovieListItemProps } from '../../common/api/MovieDB.types';
 import styled from '@emotion/styled';
 import moment from 'moment';
-import MovieStandalonePosterView from './MovieStandalonePosterView';
+import MovieStandalonePosterView from '../common/MovieStandalonePosterView';
 
 const VFlex = styled.div`
   display: flex;

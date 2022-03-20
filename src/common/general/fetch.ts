@@ -17,7 +17,7 @@ const _FAILURE_FETCH_STATE: IFetchSpec = {
 };
 
 export interface IFetchSpec {
-  isLoading: boolean | null;
+  isLoading: boolean;
   isSuccess: boolean | null;
   isFailure: boolean | null;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { IGenres } from '../common/MovieDB.types';
+import { IGenres } from '../../common/api/MovieDB.types';
 import { Col, Row, Typography, Anchor, Tag } from 'antd';
 import moment from 'moment';
 import 'moment-duration-format';
 import styled from '@emotion/styled';
-import { IMDB_MOVIE_DETAIL_BASE_URL } from '../common/MovieDB.constants';
+import { IMDB_MOVIE_DETAIL_BASE_URL } from '../../common/api/MovieDB.constants';
 
 const VRow = styled(Row)`
   flex-direction: column;

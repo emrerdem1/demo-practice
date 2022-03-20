@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ScreenRoutes } from '../common/MovieDB.constants';
+import { ScreenRoutes } from '../../common/general/constants';
 
 interface DataNotFoundProps {
   keyText: string;

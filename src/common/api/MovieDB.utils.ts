@@ -1,7 +1,7 @@
 import {
   API_KEY,
-  MovieDBEndpointPaths,
-  MovieDBEndpointPatterns,
+  EndpointPaths,
+  UriPatterns,
   MOVIE_DB_API_BASE_URL,
   MOVIE_DB_FALLBACK_AVATAR,
   MOVIE_DB_FALLBACK_POSTER,
@@ -46,8 +46,8 @@ const _generateApiURL = ({ endpoint }: IApiProps): string => {
 const _getMovieDetailApiURL = (id: number): string => {
   const parsedEndpoint = _replaceApiPathWithID({
     id,
-    apiPath: MovieDBEndpointPaths.MOVIE_DETAIL,
-    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
+    apiPath: EndpointPaths.MOVIE_DETAIL,
+    matchPattern: UriPatterns.MOVIE_ID,
   });
   return _generateApiURL({ endpoint: parsedEndpoint });
 };
@@ -55,8 +55,8 @@ const _getMovieDetailApiURL = (id: number): string => {
 const _getMovieCastApiURL = (id: number): string => {
   const parsedEndpoint = _replaceApiPathWithID({
     id,
-    apiPath: MovieDBEndpointPaths.MOVIE_CAST,
-    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
+    apiPath: EndpointPaths.MOVIE_CAST,
+    matchPattern: UriPatterns.MOVIE_ID,
   });
   return _generateApiURL({ endpoint: parsedEndpoint });
 };
@@ -64,8 +64,8 @@ const _getMovieCastApiURL = (id: number): string => {
 const _getMovieReviewApiURL = (id: number): string => {
   const parsedEndpoint = _replaceApiPathWithID({
     id,
-    apiPath: MovieDBEndpointPaths.MOVIE_REVIEWS,
-    matchPattern: MovieDBEndpointPatterns.MOVIE_ID,
+    apiPath: EndpointPaths.MOVIE_REVIEWS,
+    matchPattern: UriPatterns.MOVIE_ID,
   });
   return _generateApiURL({ endpoint: parsedEndpoint });
 };

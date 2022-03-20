@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { getMoviePoster } from '../common/MovieDB.utils';
+import { getMoviePoster } from '../../common/api/MovieDB.utils';
 
 const PosterDiv = styled.div`
   display: flex;
@@ -49,6 +49,7 @@ interface IStandalonePosterProps {
   vote_average: number;
   isDetailPagePoster?: boolean;
 }
+
 const MovieStandalonePosterView: React.FC<IStandalonePosterProps> = ({
   source,
   vote_average,

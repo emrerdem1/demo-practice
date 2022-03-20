@@ -1,32 +1,9 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import moment from 'moment';
 import { PageHeader } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ScreenRoutes } from '../common/MovieDB.constants';
-
-const MainTitleDiv = styled.div`
-  display: flex;
-  font-size: 1.5em;
-
-  .ant-page-header-heading-sub-title {
-    font-size: 1.4em;
-  }
-
-  .tagline {
-    margin-bottom: 1em;
-  }
-`;
-
-const TaglineDiv = styled.div`
-  .ant-page-header {
-    padding-top: 0;
-  }
-
-  .ant-page-header-heading-sub-title {
-    font-size: 1.2em;
-  }
-`;
+import { ScreenRoutes } from '../../common/general/constants';
+import { MainTitleDiv, TaglineDiv } from './MovieDetailTitleView.styled';
 
 interface IMovieDetailTitleProps {
   title: string;
@@ -51,7 +28,7 @@ const MovieDetailTitleView: React.FC<IMovieDetailTitleProps> = ({
         />
       </MainTitleDiv>
       <TaglineDiv>
-        <PageHeader title={''} subTitle={tagline} />
+        <PageHeader subTitle={tagline} />
       </TaglineDiv>
     </div>
   );
