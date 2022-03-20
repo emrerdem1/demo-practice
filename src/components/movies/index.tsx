@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import { TMovieListItemProps } from 'helpers/api/types';
-import MoviePosterView from './MoviePosterView';
+import MoviePosterContainerView from './MoviePosterContainerView';
 
 interface IMoviesProps {
   movies: TMovieListItemProps[];
@@ -19,7 +19,7 @@ const MoviesView: React.FC<IMoviesProps> = ({ movies }) => {
           lg={5}
           xl={4}
         >
-          <MoviePosterView movie={movie} />
+          <MoviePosterContainerView movie={movie} />
         </Col>
       ))}
     </Row>

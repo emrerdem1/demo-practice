@@ -5,7 +5,7 @@ import MovieCastScreen from 'containers/movie_cast';
 import MovieGeneralInfoView from './MovieGeneralInfoView';
 import MovieReviewsView from 'containers/movie_reviews';
 import MovieDetailTitleView from './MovieDetailTitleView';
-import MovieStandalonePosterView from 'components/common/MovieStandalonePosterView';
+import MovieStandalonePosterView from 'components/common/PosterView';
 
 interface IMovieDetailViewProps {
   movieId: string;

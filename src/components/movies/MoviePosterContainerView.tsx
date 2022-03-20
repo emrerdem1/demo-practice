@@ -2,18 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TMovieListItemProps } from 'helpers/api/types';
 import moment from 'moment';
-import MovieStandalonePosterView from 'components/common/MovieStandalonePosterView';
-import { TextContainer, VFlex } from './MoviePosterView.styled';
+import PosterView from 'components/common/PosterView';
+import { TextContainer, VFlex } from './MoviePosterContainerView.styled';
 
-interface IMoviePosterProps {
+interface IMoviePosterContainerProps {
   movie: TMovieListItemProps;
 }
 
-const MoviePosterView: React.FC<IMoviePosterProps> = ({ movie }) => {
+const MoviePosterContainerView: React.FC<IMoviePosterContainerProps> = ({
+  movie,
+}) => {
   return (
     <Link to={`/detail/${movie.id}`}>
       <VFlex>
-        <MovieStandalonePosterView
+        <PosterView
           source={movie.poster_path}
           vote_average={movie.vote_average}
         />
@@ -28,4 +30,4 @@ const MoviePosterView: React.FC<IMoviePosterProps> = ({ movie }) => {
   );
 };
 
-export default MoviePosterView;
+export default MoviePosterContainerView;
