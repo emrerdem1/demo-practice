@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ScreenRoutes } from 'helpers/general/constants';
 
-interface DataNotFoundProps {
+interface IDataNotFoundProps {
   keyText: string;
   hasHomeNavigation?: boolean;
 }
 
-const DataNotFoundView: React.FC<DataNotFoundProps> = ({
+const DataNotFoundView: React.FC<IDataNotFoundProps> = ({
   keyText,
   hasHomeNavigation = false,
 }) => {

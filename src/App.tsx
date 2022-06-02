@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import RoutesView from './containers/RoutesView';
+import RoutesScreen from './containers/RoutesScreen';
 
 const LayoutDiv = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ const LayoutDiv = styled.div`
 const App: React.FC = () => {
   return (
     <LayoutDiv>
-      <RoutesView />
+      <RoutesScreen />
     </LayoutDiv>
   );
 };

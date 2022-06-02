@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Typography } from 'antd';
 import { IReviewInfo } from 'helpers/api/types';
 import moment from 'moment';
-import { ScrollableTextDiv } from './index.styled';
+import { ScrollableTextDiv } from './MovieReviews.styled';
 
 interface IMovieReviewsProps {
   reviews: IReviewInfo[];

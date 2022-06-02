@@ -1,9 +1,9 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import { IMovieDetailProps } from 'helpers/api/types';
-import MovieCastScreen from 'containers/movie_cast';
+import MovieCastScreen from 'containers/movie_cast/MovieCastScreen';
 import MovieGeneralInfoView from './MovieGeneralInfoView';
-import MovieReviewsView from 'containers/movie_reviews';
+import MovieReviewsView from 'containers/movie_reviews/MovieReviewsScreen';
 import MovieDetailTitleView from './MovieDetailTitleView';
 import MovieStandalonePosterView from 'components/common/PosterView';
 

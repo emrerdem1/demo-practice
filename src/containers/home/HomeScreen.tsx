@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchScreen from '../movie_search';
-import MovieListScreen from '../movies';
-import { HeaderDiv } from './index.styled';
+import SearchScreen from '../movie_search/MovieSearchScreen';
+import MovieListScreen from '../movies/MoviesScreen';
+import { HeaderDiv } from './HomeScreen.styled';
 
 const HomepageScreen: React.FC = () => {
   return (
