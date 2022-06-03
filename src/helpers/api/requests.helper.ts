@@ -1,5 +1,4 @@
 import {
-  API_KEY,
   EndpointPaths,
   UriPatterns,
   MOVIE_DB_API_BASE_URL,
@@ -28,7 +27,7 @@ const _replaceApiPathWithID = ({
 }: IReplaceApiPathProps) => apiPath.replace(matchPattern, id.toString());
 
 const _generateApiURL = ({ endpoint }: IApiProps): string => {
-  return `${MOVIE_DB_API_BASE_URL}${endpoint}?api_key=${API_KEY}`;
+  return `${MOVIE_DB_API_BASE_URL}${endpoint}?api_key=${process.env.REACT_APP_API_KEY}`;
 };
 
 export const getMoviesApiURL = () => {

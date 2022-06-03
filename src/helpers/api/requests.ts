@@ -21,7 +21,9 @@ interface IApiCallProps {
   requestEndpoint: string;
 }
 
-const _movieDBApiCall = async ({ requestEndpoint }: IApiCallProps) => {
+const _movieDBApiCall = async <T>({
+  requestEndpoint,
+}: IApiCallProps): Promise<T> => {
   const movieResponse = await fetch(requestEndpoint);
   if (!movieResponse.ok) {
     throw new Error(

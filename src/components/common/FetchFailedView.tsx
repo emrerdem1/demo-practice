@@ -11,10 +11,10 @@ const FetchFailedView: React.FC<IFetchFailedProps> = ({
 }) => {
   return (
     <div>
-      <h6>
+      <h3>
         Something unexpected happened while trying to access {targetDescription}
         . Please consider informing the author this happened and try again.
-      </h6>
+      </h3>
       <Link to={ScreenRoutes.HOME}>Click to return to home.</Link>
     </div>
   );
